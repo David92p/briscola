@@ -45,14 +45,33 @@ class Deck:
             print(carte)
 
 
+    #Questo metodo definisci la briscola che comanderà il gioco - stampiamo a video il valore della briscola salvando anche un indice di riferimento pe ril seguito del gioco
+    def definisciBriscola(self):
+        n = randrange(0, 4)
+        briscola = []
+        briscola.append(n)
+        for i, seme in enumerate(self.deck):
+            if i == n:
+                for k, mazzo in self.deck.items():
+                    if seme == k:
+                        indiceCarta = randrange(0, len(self.deck[k]))
+                        briscola.append(mazzo[indiceCarta])
+                        del mazzo[indiceCarta]
+                        return briscola[1]
+
+
+
 #test
 if __name__ == "__main__":
-    deck = Deck()
-    Deck.mostraDeck(deck)
+    deck = Deck() # Istanziamo un oggetto di tipo Deck
+    Deck.mostraDeck(deck) # Stampiamo il deck come debugging
     print()
-    print(Deck.consegnaCarta(deck))
+    print(Deck.definisciBriscola(deck)) # Definiamo una briscola all'inizio del gioco
     print()
-    Deck.mostraDeck(deck)
+    print(Deck.consegnaCarta(deck)) # Consegnamo 3 carte ad un possibile giocatore 
+    print()
+    Deck.mostraDeck(deck) # Proviamo a stampare il deck come debugging
+    
     
     
     
