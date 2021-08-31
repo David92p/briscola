@@ -10,7 +10,7 @@ class Giocatore:
     @staticmethod
     def inizioGioco():
         giocatori = {}
-        giocatori[input('Inserisci il nome del giocatore: ')] = []
+        giocatori[input('Nome: ')] = []
         deck = Deck()
         for giocatore, carte in giocatori.items():
             for i in range(3):
