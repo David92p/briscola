@@ -27,6 +27,11 @@ class Deck:
             deck[seme] = carte
         return deck
 
+    #Questo metodo è un controllo del nostro deck prima e dopo aver effettuato una giocata
+    def mostraDeck(self):
+        for carte in self.deck.values():
+            print(carte)
+
     #Il metodo si occupa di scegliere unn carta random dal nostro deck e consegnarla ad un possibile giocatore
     def consegnaCarta(self):
         n = randrange(0, 4)
@@ -39,13 +44,9 @@ class Deck:
                         del mazzo[indiceCarta]
                         return cartaAssegnata
 
-    #Questo metodo è un controllo del nostro deck prima e dopo aver effettuato una giocata
-    def mostraDeck(self):
-        for carte in self.deck.values():
-            print(carte)
-
-
-    #Questo metodo definisci la briscola che comanderà il gioco - stampiamo a video il valore della briscola salvando anche un indice di riferimento pe ril seguito del gioco
+  
+    # Questo metodo definisci la briscola che comanderà il gioco 
+    # Il metodo restituisce una lista con primo valore l'indice e secondo valore la briscola 
     def definisciBriscola(self):
         n = randrange(0, 4)
         briscola = []
@@ -57,7 +58,7 @@ class Deck:
                         indiceCarta = randrange(0, len(self.deck[k]))
                         briscola.append(mazzo[indiceCarta])
                         del mazzo[indiceCarta]
-                        return briscola[1]
+                        return briscola
 
 
 

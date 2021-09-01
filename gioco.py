@@ -1,7 +1,8 @@
 from deck import Deck
 from giocatore import Giocatore
 
-from random import shuffle, randrange
+from random import randrange
+
 
 # La classe ci occupa di creare un oggetto di gioco di tipo Briscola con una lista nel seguente ordine: Deck - Giocatore 1 - Giocatore 2 
 class Briscola:
@@ -28,8 +29,11 @@ class Briscola:
     
 
 # test
+deck = Deck()
 briscola = Briscola()
 Briscola.giochiamo(briscola)
+print(Briscola.cartaBriscola(briscola))
+Deck.mostraDeck(deck)
 
 
 
