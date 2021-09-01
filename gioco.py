@@ -15,7 +15,6 @@ class Briscola:
         briscola = []
         briscola.append(Deck())
         for giocatore in range(2):
-            print('Inserire il nome del giocatore: ')
             briscola.append(Giocatore())
         return briscola
 
