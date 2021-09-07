@@ -1,5 +1,6 @@
 # briscola
 
+<<<<<<< HEAD
 ## CLASSE DECK:
 
 -	### Definisce un oggetto dizionario con chiave = seme (str) e valore = carte (lista)
@@ -9,3 +10,5 @@
     o	Consegna Carta - Possibilità di fare il return di un valore casuale all’interno delle chiavi
     o	Mostra Deck - Possibilità di mostrare il deck a video – Utile per debugging 
     o	Definisci Briscola - Possibilità di selezionare una carta in modo casuale e definirla, in questo caso, come carta/seme di briscola  
+=======
+>>>>>>> d5b1adf5fa5a62447459742139f7ad875c255a56
