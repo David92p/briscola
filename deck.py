@@ -39,6 +39,19 @@ class Deck:
                         del mazzo[indiceCarta]
                         return cartaAssegnata
 
+    def definisciBriscola(self):
+        n = randrange(0, 4)
+        briscola = []
+        briscola.append(n)
+        for i, seme in enumerate(self.deck):
+            if i == n:
+                for k, mazzo in self.deck.items():
+                    if seme == k:
+                        indiceCarta = randrange(0, len(self.deck[k]))
+                        briscola.append(mazzo[indiceCarta])
+                        del mazzo[indiceCarta]
+                        return briscola
+
     #Questo metodo è un controllo del nostro deck prima e dopo aver effettuato una giocata
     def mostraDeck(self):
         for carte in self.deck.values():
@@ -48,11 +61,13 @@ class Deck:
 #test
 if __name__ == "__main__":
     deck = Deck()
-    Deck.mostraDeck(deck)
+    Deck.mostraDeck(deck) # Utiliziamo il metodo 'mostraDeck' per stampare a video il deck 
     print()
-    print(Deck.consegnaCarta(deck))
+    print(Deck.consegnaCarta(deck)) # Stampiamo a video una carta scelta in modo casuale 
     print()
-    Deck.mostraDeck(deck)
+    Deck.mostraDeck(deck) # Mostriamo il deck a video come debugging
+    print()
+    print(Deck.definisciBriscola(deck)) # Stampiamo a video una carta definita come 'briscola' tramite il metodo 'definisciBriscola'
     
     
     
