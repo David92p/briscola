@@ -1,9 +1,9 @@
 from random import shuffle, randrange
 
-#la seguente classe si occupa di gestire un deck di briscola
+# La seguente classe si occupa di gestire un deck di briscola
 class Deck:
 
-    #Di seguito un dizionario composto da chiave-seme e valore-carte Briscola
+    # Di seguito un dizionario composto da chiave-seme e valore-carte Briscola
     deckOrdinato = {"Coppe": ["Asso Coppe","2 di Coppe","3 di Coppe", "4 di Coppe", "5 di Coppe",
                                "6 di Coppe", "7 di Coppe", "Donna di Coppe", "Cavallo di Coppe", "Re di Coppe"],
                 "Spade": ["Asso Spade","2 di Spade","3 di Spade", "4 di Spade", "5 di Spade",
@@ -18,7 +18,7 @@ class Deck:
         self.deck = Deck.mescolaDeck()
 
 
-    #Il metodo si occupa di restituire un dizionario del nostro deck in modalità disordinata
+    # Il metodo si occupa di restituire un dizionario del nostro deck in modalità disordinata
     @staticmethod
     def mescolaDeck():
         deck = {}
@@ -27,7 +27,7 @@ class Deck:
             deck[seme] = carte
         return deck
 
-    #Il metodo si occupa di scegliere unn carta random dal nostro deck e consegnarla ad un possibile giocatore
+    # Il metodo si occupa di scegliere unn carta random dal nostro deck e consegnarla ad un possibile giocatore
     def consegnaCarta(self):
         n = randrange(0, 4)
         for i, seme in enumerate(self.deck):
@@ -39,6 +39,7 @@ class Deck:
                         del mazzo[indiceCarta]
                         return cartaAssegnata
 
+    # Questo metodo ci permette di scegliere una carta in modo casuale dal Deck e difinirla come briscola
     def definisciBriscola(self):
         n = randrange(0, 4)
         briscola = []
@@ -52,13 +53,13 @@ class Deck:
                         del mazzo[indiceCarta]
                         return briscola
 
-    #Questo metodo è un controllo del nostro deck prima e dopo aver effettuato una giocata
+    # Questo metodo è un controllo del nostro deck prima e dopo aver effettuato una giocata
     def mostraDeck(self):
         for carte in self.deck.values():
             print(carte)
 
 
-#test
+# test
 if __name__ == "__main__":
     deck = Deck()
     Deck.mostraDeck(deck) # Utiliziamo il metodo 'mostraDeck' per stampare a video il deck 
