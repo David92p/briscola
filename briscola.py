@@ -1,8 +1,6 @@
 from deck import Deck
 from giocatore import Giocatore
 
-from random import randrange
-
 
 # La classe ci occupa di creare un oggetto di gioco di tipo Briscola con una lista nel seguente ordine: Deck - Giocatore 1 - Giocatore 2 
 class Briscola:
@@ -12,22 +10,41 @@ class Briscola:
     
     @staticmethod
     def inizioGioco():
-        briscola = []
-        briscola.append(Deck())
+        briscola = {}
+        briscola['deck'] = Deck()
+        briscola['briscola'] = Deck.definisciBriscola(Deck())
+        briscola['giocatori'] = []
         for giocatore in range(2):
             if giocatore == 0:
                 print("INSERISCI IL NOME DEL PRIMO GIOCATORE:")
                 print()
-                briscola.append(Giocatore())
+                briscola['giocatori'] = Giocatore()
             if giocatore == 1:
                 print("INSERISCI IL NOME DEL SECONDO GIOCATORE:")
                 print()
-                briscola.append(Giocatore())
+                briscola['giocatori'] = Giocatore()
         return briscola
+
+    """
+    def test(self):
+        for chiave, valore in self.briscola.items():
+            if chiave == 'deck':
+                Deck.mostraDeck(valore)
+            if chiave == 'briscola':
+                print(chiave, valore)
+            if chiave == 'giocatori':
+                print(valore)"""
+
+    
+
+
 
 
 
 # test
-briscola = Briscola()
+deck = Deck()
+briscola = Briscola() # Istanziamo un oggetto Briscola composto da un dizionario con 3 valori chiave nel seguente ordine - deck, briscola, giocatori
+
+
 
 
