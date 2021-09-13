@@ -4,11 +4,11 @@ from deck import Deck
 class Giocatore:
 
     def __init__(self):
-        self.carteGiocatore = Giocatore.inizioGioco()
+        self.carteGiocatore = Giocatore.definisciGiocatore()
 
     # Il seguente metodo prepara un giocatore ad una partita di briscola 
     @staticmethod
-    def inizioGioco():
+    def definisciGiocatore():
         giocatori = {}
         giocatori[input()] = []
         deck = Deck()
@@ -51,12 +51,6 @@ class Giocatore:
                 print()
                 print("Utilizza la tastiera numerica")
                 print()
-
-
-
-
-        
-
 
 
 #test
