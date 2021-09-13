@@ -10,7 +10,7 @@ class Giocatore:
     @staticmethod
     def definisciGiocatore():
         giocatori = {}
-        giocatori[input('Inserisci il tuo nome Giocatore: ')] = []
+        giocatori[input()] = []
         deck = Deck()
         for giocatore, carte in giocatori.items():
             for i in range(3):
@@ -51,12 +51,6 @@ class Giocatore:
                 print()
                 print("Utilizza la tastiera numerica")
                 print()
-
-
-
-
-        
-
 
 
 #test
