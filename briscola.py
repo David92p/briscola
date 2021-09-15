@@ -19,10 +19,12 @@ class Briscola:
                 print("INSERISCI IL NOME DEL PRIMO GIOCATORE:")
                 print()
                 briscola['giocatori'] = Giocatore()
+                print()
             if giocatore == 1:
                 print("INSERISCI IL NOME DEL SECONDO GIOCATORE:")
                 print()
                 briscola['giocatori'] = Giocatore()
+                print()
         return briscola
 
     """
