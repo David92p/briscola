@@ -42,26 +42,25 @@ class Deck:
 
     # Il metodo si occupa di scegliere una carta random dal nostro deck e consegnarla ad un possibile giocatore
     def consegnaCarta(self):
-        while True:
-            while True:
-                if len(self.deckBriscola["Coppe"]) == 0 and len(self.deckBriscola["Spade"]) == 0 and len(self.deckBriscola["Bastoni"]) == 0 and len(self.deckBriscola["Denari"]) == 0:
-                    return ''
-                else:
-                    sequenzaIndice = sample(range(4), 4)
-                    carta = []
-                    for el in sequenzaIndice: 
-                        for i, seme in enumerate(self.deckBriscola):
-                            if i == el:
-                                if len(self.deckBriscola[seme]) == 0:
-                                    break
-                                else:
-                                    for chiave, valori in self.deckBriscola.items():
-                                        if chiave == seme:
-                                            indiceCarta = randint(0, len(valori)-1)
-                                            carta.append(i)
-                                            carta.append(valori[indiceCarta])
-                                            del valori[indiceCarta]
-                                            return carta
+         while True:
+            if len(self.deckBriscola["Coppe"]) == 0 and len(self.deckBriscola["Spade"]) == 0 and len(self.deckBriscola["Bastoni"]) == 0 and len(self.deckBriscola["Denari"]) == 0:
+                return ''
+            else:
+                sequenzaIndice = sample(range(4), 4)
+                carta = []
+                for el in sequenzaIndice: 
+                    for i, seme in enumerate(self.deckBriscola):
+                        if i == el:
+                            if len(self.deckBriscola[seme]) == 0:
+                                break
+                            else:
+                                for chiave, valori in self.deckBriscola.items():
+                                    if chiave == seme:
+                                        indiceCarta = randint(0, len(valori)-1)
+                                        carta.append(i)
+                                        carta.append(valori[indiceCarta])
+                                        del valori[indiceCarta]
+                                        return carta
 
     
 
