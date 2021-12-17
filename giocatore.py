@@ -1,48 +1,63 @@
 from deck import Deck
 
+from printer import Printer
+
 # La classe si occupa di creare un giocatore con un mazzo di carte di tipo Briscola
 class Giocatore:
 
     def __init__(self):
-        self.carteGiocatore = Giocatore.definisciGiocatore()
+        self.giocatore = Giocatore.definisciGiocatore()
 
     # Il seguente metodo prepara un giocatore ad una partita di briscola 
     @staticmethod
     def definisciGiocatore():
-        giocatori = {}
-        giocatori[input()] = []
+        giocatore = {}
+        giocatore[input()] = []
         deck = Deck()
-        for giocatore, carte in giocatori.items():
+        for carte in giocatore.values():
             for i in range(3):
-                cartaPescata = Deck.consegnaCarta(deck)
-                giocatori[giocatore].append(cartaPescata)
-        return giocatori
+                carta = Deck.consegnaCarta(deck)
+                carte.append(carta)
+        return giocatore
             
     # Il seguente metodo ci permette di visualizzare a schermo attraverso un print il nome del giocatore istanziato con le rispettive carte        
     def stampaCarte(self):
-        for nomeGiocatore, carte in self.carteGiocatore.items():
-            print('Giocatore '+ nomeGiocatore + ':')
+        for nomeGiocatore, carte in self.giocatore.items():
+            print('Giocatore '+ nomeGiocatore.upper() + ':')
             print()
-            print(carte)
-            print()
+            Printer.stampaCartegiocatore(carte)
+
+    def stampaNome(self):
+        for nome in self.giocatore.keys():
+            return nome.upper() 
+
+    # La funzione si occupa di aggiungere una carta al nostro oggetto
+    def pescaCarta(self, carta):
+        for carte in self.giocatore.values():
+            carte.append(carta)
+        
+
 
     # Il seguente metodo ci permette di scegliere e restituire una carta tra quelle in mano dell'oggetto Giocatore
     def giocaCarta(self):
         print('NUMERO CARTE GIOCABILI:')
         print()
-        for carte in self.carteGiocatore.values():
+        for carte in self.giocatore.values():
             for numero, carta in enumerate(carte, 1):
-                print(f'Numero {numero} = {carta}')
+                print(f'Numero {numero} = {carta[1]}')
                 print()
 
         while True:
             try:
                 numero = int(input('INSERISCI IL NUMERO DI CARTA CHE DESIDERI GIOCARE: '))
                 if numero == 1 or numero == 2 or numero == 3:
-                    for carte in self.carteGiocatore.values():
+                    for carte in self.giocatore.values():
                         for index, carta in enumerate(carte, 1):
                             if index == numero:
-                                return carta
+                                cartaGiocata = carta
+                                del carte[index-1]
+                                return cartaGiocata
+    
                 else:
                     print()
                     print('Valore non riconosciuto')
@@ -55,14 +70,21 @@ class Giocatore:
 
 #test
 if __name__ == "__main__":
-    deck = Deck() # Istanziamo un oggetto di tipo Deck
-    giocatore1 = Giocatore() # Istanziamo un primo giocatore 
-    Giocatore.stampaCarte(giocatore1) # Richiamiamo un metodo di stampa che lavora sull'oggetto creato
-    print()
-    Deck.mostraDeck(deck) # Stampiamo il mazzo di carte rimanente come debugging
-    print()
-    print(Giocatore.giocaCarta(giocatore1)) # Stampiamo la carta che desideriamo giocare
+    deck = Deck()
+    giocatore1 = Giocatore()  # Istanziamo un primo giocatore
+    Giocatore.stampaCarte(giocatore1) # Stampiamo le carte del giocatore
+    Printer.stampaCarta(Giocatore.giocaCarta(giocatore1)) # Stampiamo a video il return della funzione tramite le funzione Printer
+    Giocatore.stampaCarte(giocatore1) # Stampiamo le carte del giocatore rimanenti come debugging
+    Giocatore.pescaCarta(giocatore1, Deck.consegnaCarta(deck))
+    Giocatore.stampaCarte(giocatore1)
+    Deck.mostraDeck(deck)
 
+    
+    
+
+
+
+    
 
     
 
