@@ -1,9 +1,9 @@
-from random import shuffle, randrange
+from random import shuffle, randint, sample
 
-# La seguente classe si occupa di gestire un deck di briscola
+#la seguente classe si occupa di gestire un deck di briscola
 class Deck:
 
-    # Di seguito un dizionario composto da chiave-seme e valore-carte Briscola
+    #Di seguito un dizionario composto da chiave-seme e valore-carte Briscola
     deckOrdinato = {"Coppe": ["Asso Coppe","2 di Coppe","3 di Coppe", "4 di Coppe", "5 di Coppe",
                                "6 di Coppe", "7 di Coppe", "Donna di Coppe", "Cavallo di Coppe", "Re di Coppe"],
                 "Spade": ["Asso Spade","2 di Spade","3 di Spade", "4 di Spade", "5 di Spade",
@@ -15,10 +15,10 @@ class Deck:
             }
 
     def __init__(self):
-        self.deck = Deck.mescolaDeck()
+        self.deckBriscola = Deck.mescolaDeck()
 
 
-    # Il metodo si occupa di restituire un dizionario del nostro deck in modalità disordinata
+    #Il metodo si occupa di restituire un dizionario del nostro deck in modalità disordinata
     @staticmethod
     def mescolaDeck():
         deck = {}
@@ -27,50 +27,60 @@ class Deck:
             deck[seme] = carte
         return deck
 
-    # Il metodo si occupa di scegliere unn carta random dal nostro deck e consegnarla ad un possibile giocatore
-    def consegnaCarta(self):
-        n = randrange(0, 4)
-        for i, seme in enumerate(self.deck):
-            if i == n:
-                for k, mazzo in self.deck.items():
-                    if seme == k:
-                        indiceCarta = randrange(0, len(self.deck[k]))
-                        cartaAssegnata = mazzo[indiceCarta]
-                        del mazzo[indiceCarta]
-                        return cartaAssegnata
-
-    # Questo metodo ci permette di scegliere una carta in modo casuale dal Deck e difinirla come briscola
     def definisciBriscola(self):
-        n = randrange(0, 4)
-        briscola = []
-        briscola.append(n)
-        for i, seme in enumerate(self.deck):
+        cartaBriscola = []
+        n = randint(0, 3)
+        cartaBriscola.append(n)
+        for i, seme in enumerate(self.deckBriscola):
             if i == n:
-                for k, mazzo in self.deck.items():
+                for k, mazzo in self.deckBriscola.items():
                     if seme == k:
-                        indiceCarta = randrange(0, len(self.deck[k]))
-                        briscola.append(mazzo[indiceCarta])
+                        indiceCarta = randint(0, 9)
+                        cartaBriscola.append(mazzo[indiceCarta])
                         del mazzo[indiceCarta]
-                        return briscola
+                        return cartaBriscola
 
-    # Questo metodo è un controllo del nostro deck prima e dopo aver effettuato una giocata
+    # Il metodo si occupa di scegliere una carta random dal nostro deck e consegnarla ad un possibile giocatore
+    def consegnaCarta(self):
+         while True:
+            if len(self.deckBriscola["Coppe"]) == 0 and len(self.deckBriscola["Spade"]) == 0 and len(self.deckBriscola["Bastoni"]) == 0 and len(self.deckBriscola["Denari"]) == 0:
+                return ''
+            else:
+                sequenzaIndice = sample(range(4), 4)
+                carta = []
+                for el in sequenzaIndice: 
+                    for i, seme in enumerate(self.deckBriscola):
+                        if i == el:
+                            if len(self.deckBriscola[seme]) == 0:
+                                break
+                            else:
+                                for chiave, valori in self.deckBriscola.items():
+                                    if chiave == seme:
+                                        indiceCarta = randint(0, len(valori)-1)
+                                        carta.append(i)
+                                        carta.append(valori[indiceCarta])
+                                        del valori[indiceCarta]
+                                        return carta
+
+    
+
+    #Questo metodo è un controllo del nostro deck prima e dopo aver effettuato una giocata
     def mostraDeck(self):
-        for carte in self.deck.values():
+        for carte in self.deckBriscola.values():
             print(carte)
 
 
 # test
 if __name__ == "__main__":
-    deck = Deck()
-    Deck.mostraDeck(deck) # Utiliziamo il metodo 'mostraDeck' per stampare a video il deck 
+    deck = Deck()  # Creiamo un'istanza di tipo deck di briscola
+    # Utiliziamo il metodo 'mostraDeck' per stampare a video il deck
+    Deck.mostraDeck(deck)
     print()
-    print(Deck.consegnaCarta(deck)) # Stampiamo a video una carta scelta in modo casuale 
+    # Definiamo una briscola di gioco 
+    print(Deck.definisciBriscola(deck))
     print()
-    Deck.mostraDeck(deck) # Mostriamo il deck a video come debugging
+    # Consegnamo una carta dal deck
+    print(Deck.consegnaCarta(deck))
     print()
-    print(Deck.definisciBriscola(deck)) # Stampiamo a video una carta definita come 'briscola' tramite il metodo 'definisciBriscola'
-    
-    
-    
-
-        
+    # Mostriamo a video il deck utile come debugging
+    Deck.mostraDeck(deck)
