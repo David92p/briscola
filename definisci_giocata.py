@@ -12,11 +12,11 @@ class ValutazioneCarte:
                           "6 di Denari", "5 di Denari", "4 di Denari", "2 di Denari"]]
 
         # condizione se nessuno dei due giocatori giocano una carta briscola
-        if cartaBriscola[0] != carta1[0] and cartaBriscola[0] != carta2[0]: 
-            # in caso di nessuna carta briscola da entrambe le parti vince il giocatore 1 che ha effettuato la prima giocata
+        if cartaBriscola[0] != carta1[0] and cartaBriscola[0] != carta2[0]:
+            # condizione di nessuna carta di briscola da entrambe le parti e diverso seme di giocata
             if carta1[0] != carta2[0]:
                 return 0
-            # in caso di carte diverse si contano i punti di validità della carta
+            # condizione di nessuna carta briscola da entrambe le parti e stesso seme di giocata
             elif carta1[0] == carta2[0]:
                 listaCarte = conteggioDeck[carta1[0]]
                 index_prima_carta = listaCarte.index(carta1[1])
@@ -24,8 +24,8 @@ class ValutazioneCarte:
                 if index_prima_carta < index_seconda_carta:
                     return 0
                 else:
-                   return 1
-        
+                    return 1
+
         # condizione se tutti e due giocatori giocano una carta briscola
         elif cartaBriscola[0] == carta2[0] and cartaBriscola[0] == carta1[0]:
             listaCarte = conteggioDeck[carta1[0]]

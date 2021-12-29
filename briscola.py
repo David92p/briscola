@@ -35,6 +35,9 @@ class Briscola:
         turno = 0
         carte_primo = []
         carte_secondo = []
+        # if Giocatore.stampaCarte(self.giocoBriscola[2][turno]) == 0:
+        #   return 'FINE GIOCO'
+
         while carte < 40:
             giocata = 1
             print("LA BRISCOLA DI GIOCO SARA'")
@@ -45,14 +48,12 @@ class Briscola:
                         f"{Giocatore.stampaNome(self.giocoBriscola[2][turno])} PREMI INVIO SE SEI PRONTO A GIOCARE!!")
                     print()
                     if giocatore == "":
-                        # Giocatore.stampaCarte(self.giocoBriscola[2][turno])
-                        # print()
                         if turno == 0:
                             carta = Giocatore.giocaCarta(
                                 self.giocoBriscola[2][turno])
                             carta_giocatore_1 = carta
                             Printer.stampaCarta(carta_giocatore_1)
-                            turno = 1 
+                            turno = 1
 
                         elif turno == 1:
                             carta = Giocatore.giocaCarta(
@@ -70,8 +71,6 @@ class Briscola:
                     print(
                         f'VALORE NON RICONOSCIUTO - {Giocatore.stampaNome(self.giocoBriscola[2][turno])} PREMI INVIO SE SEI PRONTO A GIOCARE')
 
-            print(carta_giocatore_1, carta_giocatore_2)
-            print(turno)
             while True:
                 if turno == 0:
                     vincitore = ValutazioneCarte.valutaPresaBriscola(
@@ -85,16 +84,18 @@ class Briscola:
                             self.giocoBriscola[2][0], prima_carta_consegnata)
                         seconda_carta_consegnata = Deck.consegnaCarta(
                             self.giocoBriscola[0])
-                        if seconda_carta_consegnata == '':
+                        if seconda_carta_consegnata == '' and Giocatore.lunghezzaCarte(self.giocoBriscola[2][turno]) == 2:
                             Giocatore.pescaCarta(
                                 self.giocoBriscola[2][1], self.giocoBriscola[1])
+                        elif Giocatore.lunghezzaCarte(self.giocoBriscola[2][turno]) == 1:
+                            break
                         else:
                             Giocatore.pescaCarta(
                                 self.giocoBriscola[2][1], seconda_carta_consegnata)
 
                         turno = 0
-                        print(f'QUESTO GIRO PRENDE {Giocatore.stampaNome(self.giocoBriscola[2][0])}')
-
+                        print(
+                            f'QUESTO GIRO PRENDE {Giocatore.stampaNome(self.giocoBriscola[2][0])}')
 
                     elif vincitore == 1:
                         carte_secondo.append(carta_giocatore_1)
@@ -113,13 +114,14 @@ class Briscola:
                                 self.giocoBriscola[2][0], seconda_carta_consegnata)
 
                         turno = 1
-                        print(f'QUESTO GIRO PRENDE {Giocatore.stampaNome(self.giocoBriscola[2][1])}')
-                    print('Vincitore: ', vincitore)
+                        print(
+                            f'QUESTO GIRO PRENDE {Giocatore.stampaNome(self.giocoBriscola[2][1])}')
+
+                    print()
+
                     giocata = 1
-                    carte += 2 
-                    print(carte_primo)
-                    print(carte_secondo)
-                    break     
+                    carte += 2
+                    break
 
                 elif turno == 1:
                     vincitore = ValutazioneCarte.valutaPresaBriscola(
@@ -141,7 +143,8 @@ class Briscola:
                                 self.giocoBriscola[2][0], seconda_carta_consegnata)
 
                         turno = 1
-                        print(f'QUESTO GIRO PRENDE {Giocatore.stampaNome(self.giocoBriscola[2][1])}')
+                        print(
+                            f'QUESTO GIRO PRENDE {Giocatore.stampaNome(self.giocoBriscola[2][1])}')
 
                     elif vincitore == 1:
                         carte_primo.append(carta_giocatore_2)
@@ -160,17 +163,18 @@ class Briscola:
                                 self.giocoBriscola[2][1], seconda_carta_consegnata)
 
                         turno = 0
-                        print(f'QUESTO GIRO PRENDE {Giocatore.stampaNome(self.giocoBriscola[2][0])}')
-                    print('Vincitore: ', vincitore)
+                        print(
+                            f'QUESTO GIRO PRENDE {Giocatore.stampaNome(self.giocoBriscola[2][0])}')
+
+                    print()
+
                     giocata = 1
-                    carte += 2 
-                    print(carte_primo)
-                    print(carte_secondo)
+                    carte += 2
                     break
 
-              
+        print(carta_giocatore_1)
+        print(carta_giocatore_2)
         print('fine gioco')
-        
 
 
 if __name__ == "__main__":
