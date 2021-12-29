@@ -7,7 +7,7 @@ class ValutazioneCarte:
                          ["Asso Spade", "3 di Spade", "Re di Spade", "Cavallo di Spade", "Donna di Spade", "7 di Spade",
                           "6 di Spade", "5 di Spade", "4 di Spade", "2 di Spade"],
                          ["Asso Bastoni", "3 di Bastoni", "Re di Bastoni", "Cavallo di Bastoni", "Donna di Bastoni", "7 di Bastoni",
-                          "6 di Bastoni", "5 di Bastoni", "4 di SBastoni", "2 di Bastoni"],
+                          "6 di Bastoni", "5 di Bastoni", "4 di Bastoni", "2 di Bastoni"],
                          ["Asso Denari", "3 di Denari", "Re di Denari", "Cavallo di Denari", "Donna di Denari", "7 di Denari",
                           "6 di Denari", "5 di Denari", "4 di Denari", "2 di Denari"]]
 
