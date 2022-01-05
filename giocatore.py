@@ -1,14 +1,15 @@
-from deck import Deck
-
-from printer import Printer
+from .deck import Deck
+from .printer import Printer
 
 # La classe si occupa di creare un giocatore con un mazzo di carte di tipo Briscola
+
+
 class Giocatore:
 
     def __init__(self):
         self.giocatore = Giocatore.definisciGiocatore()
 
-    # Il seguente metodo prepara un giocatore ad una partita di briscola 
+    # Il seguente metodo prepara un giocatore ad una partita di briscola
     @staticmethod
     def definisciGiocatore():
         giocatore = {}
@@ -19,27 +20,30 @@ class Giocatore:
                 carta = Deck.consegnaCarta(deck)
                 carte.append(carta)
         return giocatore
-            
-    # Il seguente metodo ci permette di visualizzare a schermo attraverso un print il nome del giocatore istanziato con le rispettive carte        
-    def stampaCarte(self):
-        for nomeGiocatore, carte in self.giocatore.items():
-            print('Giocatore '+ nomeGiocatore.upper() + ':')
-            print()
+
+    # Il seguente metodo ci permette di visualizzare a schermo attraverso un print il nome del giocatore istanziato con le rispettive carte
+    def restituisciCarte(self):
+        for carte in self.giocatore.values():
             Printer.stampaCartegiocatore(carte)
 
+    # Il metodo restituisce la lunghezza delle carte in mano al giocatore
+    def lunghezzaCarte(self):
+        for carte in self.giocatore.values():
+            return len(carte)
+
+    # La funzione ci permette di stampare il nome a video del nostro Oggetto in maiuscolo
     def stampaNome(self):
         for nome in self.giocatore.keys():
-            return nome.upper() 
+            return nome.upper()
 
-    # La funzione si occupa di aggiungere una carta al nostro oggetto
+    # La funzione si occupa di aggiungere una carta al nostro oggetto Giocatore selezionata dal Deck
     def pescaCarta(self, carta):
         for carte in self.giocatore.values():
             carte.append(carta)
-        
 
-
-    # Il seguente metodo ci permette di scegliere e restituire una carta tra quelle in mano dell'oggetto Giocatore
+    # Il seguente metodo dopo aver stampato a video la sequenza delle carte numerandola, restiuisce una delle carte selezionate attraverso un imput
     def giocaCarta(self):
+        Giocatore.restituisciCarte(self)
         print('NUMERO CARTE GIOCABILI:')
         print()
         for carte in self.giocatore.values():
@@ -49,15 +53,29 @@ class Giocatore:
 
         while True:
             try:
-                numero = int(input('INSERISCI IL NUMERO DI CARTA CHE DESIDERI GIOCARE: '))
-                if numero == 1 or numero == 2 or numero == 3:
-                    for carte in self.giocatore.values():
-                        for index, carta in enumerate(carte, 1):
-                            if index == numero:
-                                cartaGiocata = carta
-                                del carte[index-1]
-                                return cartaGiocata
-    
+                numero = int(
+                    input('INSERISCI IL NUMERO DI CARTA CHE DESIDERI GIOCARE: '))
+
+                if len(carte) == 3 and (numero == 1 or numero == 2 or numero == 3):
+                    for index, carta in enumerate(carte, 1):
+                        if index == numero:
+                            cartaGiocata = carta
+                            del carte[index-1]
+                            return carta
+
+                elif len(carte) == 2 and (numero == 1 or numero == 2):
+                    for index, carta in enumerate(carte, 1):
+                        if index == numero:
+                            cartaGiocata = carta
+                            del carte[index-1]
+                            return carta
+
+                elif len(carte) == 1 and numero == 1:
+                    for index, carta in enumerate(carte, 1):
+                        if index == numero:
+                            cartaGiocata = carta
+                            del carte[index-1]
+                            return carta
                 else:
                     print()
                     print('Valore non riconosciuto')
@@ -68,25 +86,13 @@ class Giocatore:
                 print()
 
 
-#test
+# test
 if __name__ == "__main__":
-    deck = Deck()
-    giocatore1 = Giocatore()  # Istanziamo un primo giocatore
-    Giocatore.stampaCarte(giocatore1) # Stampiamo le carte del giocatore
-    Printer.stampaCarta(Giocatore.giocaCarta(giocatore1)) # Stampiamo a video il return della funzione tramite le funzione Printer
-    Giocatore.stampaCarte(giocatore1) # Stampiamo le carte del giocatore rimanenti come debugging
-    Giocatore.pescaCarta(giocatore1, Deck.consegnaCarta(deck))
-    Giocatore.stampaCarte(giocatore1)
-    Deck.mostraDeck(deck)
-
-    
-    
-
-
-
-    
-
-    
-
-  
-
+    # Istanziamo un primo giocatore
+    giocatore1 = Giocatore()
+    # Stampiamo le carte del giocatore
+    Giocatore.restituisciCarte(giocatore1)
+    # Stampiamo la carta giocata
+    Giocatore.giocaCarta(giocatore1)
+    # Stampiamo le carte del giocatore rimanenti come debugging
+    Giocatore.restituisciCarte(giocatore1)
