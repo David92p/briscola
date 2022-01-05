@@ -22,88 +22,77 @@ class Giocatore:
         return giocatore
 
     # Il seguente metodo ci permette di visualizzare a schermo attraverso un print il nome del giocatore istanziato con le rispettive carte
-    def stampaCarte(self):
-        for nomeGiocatore, carte in self.giocatore.items():
-            print('Giocatore ' + nomeGiocatore.upper() + ':')
-            print()
+    def restituisciCarte(self):
+        for carte in self.giocatore.values():
             Printer.stampaCartegiocatore(carte)
 
+    # Il metodo restituisce la lunghezza delle carte in mano al giocatore
     def lunghezzaCarte(self):
         for carte in self.giocatore.values():
-            if len(carte) == 3:
-                return 3
-            elif len(carte) == 2:
-                return 2
-            elif len(carte) == 1:
-                return 1
-            elif len(carte) == 0:
-                return 0
+            return len(carte)
 
+    # La funzione ci permette di stampare il nome a video del nostro Oggetto in maiuscolo
     def stampaNome(self):
         for nome in self.giocatore.keys():
             return nome.upper()
 
-    # La funzione si occupa di aggiungere una carta al nostro oggetto
+    # La funzione si occupa di aggiungere una carta al nostro oggetto Giocatore selezionata dal Deck
     def pescaCarta(self, carta):
         for carte in self.giocatore.values():
             carte.append(carta)
 
-    # Il seguente metodo ci permette di scegliere e restituire una carta tra quelle in mano dell'oggetto Giocatore
+    # Il seguente metodo dopo aver stampato a video la sequenza delle carte numerandola, restiuisce una delle carte selezionate attraverso un imput
     def giocaCarta(self):
+        Giocatore.restituisciCarte(self)
         print('NUMERO CARTE GIOCABILI:')
         print()
         for carte in self.giocatore.values():
             for numero, carta in enumerate(carte, 1):
-                print(f'{numero} = {carta}')
+                print(f'Numero {numero} = {carta[1]}')
                 print()
 
-            while True:
-                try:
-                    numero = int(
-                        input('INSERISCI IL NUMERO DI CARTA CHE DESIDERI GIOCARE: '))
+        while True:
+            try:
+                numero = int(
+                    input('INSERISCI IL NUMERO DI CARTA CHE DESIDERI GIOCARE: '))
 
-                    if len(carte) == 3 and (numero == 1 or numero == 2 or numero == 3):
-                        for index, carta in enumerate(carte, 1):
-                            if index == numero:
-                                cartaGiocata = carta
-                                del carte[index-1]
-                                return cartaGiocata
+                if len(carte) == 3 and (numero == 1 or numero == 2 or numero == 3):
+                    for index, carta in enumerate(carte, 1):
+                        if index == numero:
+                            cartaGiocata = carta
+                            del carte[index-1]
+                            return carta
 
-                    elif len(carte) == 2 and (numero == 1 or numero == 2):
-                        for index, carta in enumerate(carte, 1):
-                            if index == numero:
-                                cartaGiocata = carta
-                                del carte[index-1]
-                                return cartaGiocata
+                elif len(carte) == 2 and (numero == 1 or numero == 2):
+                    for index, carta in enumerate(carte, 1):
+                        if index == numero:
+                            cartaGiocata = carta
+                            del carte[index-1]
+                            return carta
 
-                    elif len(carte) == 1 and numero == 1:
-                        for index, carta in enumerate(carte, 1):
-                            if index == numero:
-                                cartaGiocata = carta
-                                del carte[index-1]
-                                return cartaGiocata
-                    else:
-                        print()
-                        print('Valore non riconosciuto')
-                        print()
-                except ValueError:
+                elif len(carte) == 1 and numero == 1:
+                    for index, carta in enumerate(carte, 1):
+                        if index == numero:
+                            cartaGiocata = carta
+                            del carte[index-1]
+                            return carta
+                else:
                     print()
-                    print("Utilizza la tastiera numerica")
+                    print('Valore non riconosciuto')
                     print()
+            except ValueError:
+                print()
+                print("Utilizza la tastiera numerica")
+                print()
 
 
 # test
 if __name__ == "__main__":
-    deck = Deck()
-    giocatore1 = Giocatore()  # Istanziamo un primo giocatore
-    Giocatore.stampaCarte(giocatore1)  # Stampiamo le carte del giocatore
-    # Stampiamo a video il return della funzione tramite le funzione Printer
-    Printer.stampaCarta(Giocatore.giocaCarta(giocatore1))
+    # Istanziamo un primo giocatore
+    giocatore1 = Giocatore()
+    # Stampiamo le carte del giocatore
+    Giocatore.restituisciCarte(giocatore1)
+    # Stampiamo la carta giocata
+    Giocatore.giocaCarta(giocatore1)
     # Stampiamo le carte del giocatore rimanenti come debugging
-    Giocatore.stampaCarte(giocatore1)
-    Printer.stampaCarta(Giocatore.giocaCarta(giocatore1))
-    # Stampiamo le carte del giocatore rimanenti come debugging
-    Giocatore.stampaCarte(giocatore1)
-    Printer.stampaCarta(Giocatore.giocaCarta(giocatore1))
-    # Stampiamo le carte del giocatore rimanenti come debugging
-    Giocatore.stampaCarte(giocatore1)
+    Giocatore.restituisciCarte(giocatore1)
