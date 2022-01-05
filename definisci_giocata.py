@@ -43,6 +43,49 @@ class ValutazioneCarte:
         elif cartaBriscola[0] != carta1[0] and cartaBriscola[0] == carta2[0]:
             return 1
 
+    # La seguente funzione prende in considerazione solo le carte che determinano dei punti vincenti
+    # Per ogni carta definita come carta-punti, viene aggiunto il valore dei punti al giocatore che ha la carta tra le proprie prese
+    def conteggioPuntiBriscola(listaCarteGiocatori):
+        puntiGiocatore1 = 0
+        puntiGiocatore2 = 0
+        puntiAsso = ["Asso Coppe", "Asso Spade", "Asso Bastoni", "Asso Denari"]
+        punti_3 = ["3 di Coppe", "3 di Spade", "3 di Bastoni", "3 di Denari", ]
+        puntiRe = ["Re di Coppe", "Re di Spade",
+                   "Re di Bastoni", "Re di Denari"]
+        puntiCavallo = ["Cavallo di Coppe", "Cavallo di Spade",
+                        "Cavallo di Bastoni", "Cavallo di Denari"]
+        puntiDonna = ["Donna di Coppe", "Donna di Spade",
+                      "Donna di Bastoni", "Donna di Denari"]
+
+        for carta in puntiAsso:
+            if carta in listaCarteGiocatori[0]:
+                puntiGiocatore1 += 11
+            else:
+                puntiGiocatore2 += 11
+
+        for carta in punti_3:
+            if carta in listaCarteGiocatori[0]:
+                puntiGiocatore1 += 10
+            else:
+                puntiGiocatore2 += 10
+        for carta in puntiRe:
+            if carta in listaCarteGiocatori[0]:
+                puntiGiocatore1 += 4
+            else:
+                puntiGiocatore2 += 4
+        for carta in puntiCavallo:
+            if carta in listaCarteGiocatori[0]:
+                puntiGiocatore1 += 3
+            else:
+                puntiGiocatore2 += 3
+        for carta in puntiDonna:
+            if carta in listaCarteGiocatori[0]:
+                puntiGiocatore1 += 2
+            else:
+                puntiGiocatore2 += 2
+
+        return [puntiGiocatore1, puntiGiocatore2]
+
 
 # test
 if __name__ == "__main__":
