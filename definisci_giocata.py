@@ -57,33 +57,47 @@ class ValutazioneCarte:
         puntiDonna = ["Donna di Coppe", "Donna di Spade",
                       "Donna di Bastoni", "Donna di Denari"]
 
+        # ciclo di controllo carte 'Asso' all'interno delle carte punti prese dai giocatori
+        # la carta attribuisce 11 punti al giocatore che la detiene
         for carta in puntiAsso:
             if carta in listaCarteGiocatori[0]:
                 puntiGiocatore1 += 11
             else:
                 puntiGiocatore2 += 11
 
+        # ciclo di controllo carte '3' all'interno delle carte punti prese dai giocatori
+        # la carta attribuisce 10 punti al giocatore che la detiene
         for carta in punti_3:
             if carta in listaCarteGiocatori[0]:
                 puntiGiocatore1 += 10
             else:
                 puntiGiocatore2 += 10
+
+        # ciclo di controllo carte 'Re' all'interno delle carte punti prese dai giocatori
+        # la carta attribuisce 4 punti al giocatore che la detiene
         for carta in puntiRe:
             if carta in listaCarteGiocatori[0]:
                 puntiGiocatore1 += 4
             else:
                 puntiGiocatore2 += 4
+
+        # ciclo di controllo carte 'Cavallo' all'interno delle carte punti prese dai giocatori
+        # la carta attribuisce 3 punti al giocatore che la detiene
         for carta in puntiCavallo:
             if carta in listaCarteGiocatori[0]:
                 puntiGiocatore1 += 3
             else:
                 puntiGiocatore2 += 3
+
+        # ciclo di controllo carte 'Donna' all'interno delle carte punti prese dai giocatori
+        # la carta attribuisce 2 punti al giocatore che la detiene
         for carta in puntiDonna:
             if carta in listaCarteGiocatori[0]:
                 puntiGiocatore1 += 2
             else:
                 puntiGiocatore2 += 2
 
+        # abbiamo una lista di return con indice 0 carte punti primo giocatore e indice 1 carte punti secondo giocatore
         return [puntiGiocatore1, puntiGiocatore2]
 
 
