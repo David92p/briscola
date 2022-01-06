@@ -3,8 +3,4 @@
 /workspace.xml/
 .idea/
 __pycache__/
-<<<<<<< HEAD
 *.pyc
-=======
-*.pyc
->>>>>>> giocatore
