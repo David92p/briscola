@@ -34,4 +34,21 @@ CLASSE PRINTER:
         *	Stampa Carta - Stampa una singola carta  <br>
         
        
+CLASSE VALUTAZIONE CARTE:
+
+-	La seguente Classe ha al suo interno delle funzioni utili al comportamento delle carte a seconda del gioco in cui vengono utilizzate
+
+-	Metodi: <br>
+        *	Valutazione presa Briscola - Determina, dopo una valutazione di seme-briscola-giocata, la vincita della prima carta o della seconda carta giocata <br>
+        *	Conteggio punti Briscola - Effettua il conteggio punti delle carte prese <br>
+
+CLASSE BRISCOLA:
+
+-	Definisce un oggetto Briscola con una lista di oggetti utili al gioco - la lista è composta da un Deck, una carta briscola, e una lista con due oggetti Giocatore
+
+-	Metodi: <br>
+        *	Definisci partita - Il metodo si occupa di inserire all'interno della lista i dati utili al gioco <br>
+        *	Valuta Presa - Il metodo consegna le carte in modo corretto dopo una valutazione della giocata <br>
+        *	Inizio Gioco Briscola - Il metodo si occupa di effetturare un ciclo di partita per tutte le 40 carte, dopo le valutazioni delle giocate effettuate <br>
+     
 
