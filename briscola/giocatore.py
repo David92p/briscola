@@ -1,5 +1,5 @@
-from deck import Deck
-from printer import Printer
+from .deck import Deck
+from .printer import Printer
 
 # La classe si occupa di creare un giocatore con un mazzo di carte di tipo Briscola
 

@@ -1,7 +1,7 @@
-from deck import Deck
-from giocatore import Giocatore
-from printer import Printer
-from definisci_giocata import ValutazioneCarte
+from .deck import Deck
+from .giocatore import Giocatore
+from .printer import Printer
+from .definisci_giocata import ValutazioneCarte
 
 
 # La classe ci occupa di creare un oggetto di gioco di tipo Briscola con una lista nel seguente ordine: Deck - Giocatore 1 - Giocatore 2
